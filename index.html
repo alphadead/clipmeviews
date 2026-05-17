@@ -508,25 +508,58 @@
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-    .ticker-pill {
+    .ticker-card {
       display: inline-flex;
       align-items: center;
+      gap: 14px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--pill);
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: 600;
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--navy);
+      padding: 10px 22px 10px 10px;
       white-space: nowrap;
       flex-shrink: 0;
       user-select: none;
     }
-    /* Placeholder state — dashed border only */
-    .ticker-pill--ph {
-      border-style: dashed;
+    .ticker-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--navy);
+    }
+    .ticker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .ticker-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ticker-name {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .ticker-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.2;
     }
 
     /* ============================================================
@@ -1215,24 +1248,115 @@
 
 
 <!-- ============================================================
-     LOGOS TICKER — EDIT: replace names, keep the duplicate for loop
+     LOGOS TICKER
+     EDIT per card: avatar src + alt, ticker-name, ticker-sub
 ============================================================ -->
 <section id="logos" aria-label="Clients">
-  <p class="logos-label">Trusted by</p>
+  <p class="logos-label">Brands we've worked with</p>
   <div class="ticker-track" aria-hidden="true">
-    <!-- Set repeated 4× so the loop stays seamless at any screen width -->
-    <span class="ticker-pill">Aakash Gupta</span>
-    <span class="ticker-pill">Raj Shamani</span>
-    <span class="ticker-pill">Atlassian</span>
-    <span class="ticker-pill">Aakash Gupta</span>
-    <span class="ticker-pill">Raj Shamani</span>
-    <span class="ticker-pill">Atlassian</span>
-    <span class="ticker-pill">Aakash Gupta</span>
-    <span class="ticker-pill">Raj Shamani</span>
-    <span class="ticker-pill">Atlassian</span>
-    <span class="ticker-pill">Aakash Gupta</span>
-    <span class="ticker-pill">Raj Shamani</span>
-    <span class="ticker-pill">Atlassian</span>
+
+    <!-- Set A -->
+    <div class="ticker-card">
+      <!-- EDIT: replace src with Aakash Gupta's headshot -->
+      <div class="ticker-avatar">A</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Aakash Gupta</span>
+        <span class="ticker-sub">Product Growth</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <!-- EDIT: replace src with Raj Shamani's headshot -->
+      <div class="ticker-avatar">R</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Raj Shamani</span>
+        <span class="ticker-sub">Figuring Out</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar" style="background:#0052CC;">
+        <img src="https://logo.clearbit.com/atlassian.com" alt="Atlassian logo">
+      </div>
+      <div class="ticker-info">
+        <span class="ticker-name">Atlassian</span>
+        <span class="ticker-sub">Product in Practice</span>
+      </div>
+    </div>
+
+    <!-- Set B (duplicate for seamless loop) -->
+    <div class="ticker-card">
+      <div class="ticker-avatar">A</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Aakash Gupta</span>
+        <span class="ticker-sub">Product Growth</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar">R</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Raj Shamani</span>
+        <span class="ticker-sub">Figuring Out</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar" style="background:#0052CC;">
+        <img src="https://logo.clearbit.com/atlassian.com" alt="Atlassian logo">
+      </div>
+      <div class="ticker-info">
+        <span class="ticker-name">Atlassian</span>
+        <span class="ticker-sub">Product in Practice</span>
+      </div>
+    </div>
+
+    <!-- Set C -->
+    <div class="ticker-card">
+      <div class="ticker-avatar">A</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Aakash Gupta</span>
+        <span class="ticker-sub">Product Growth</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar">R</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Raj Shamani</span>
+        <span class="ticker-sub">Figuring Out</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar" style="background:#0052CC;">
+        <img src="https://logo.clearbit.com/atlassian.com" alt="Atlassian logo">
+      </div>
+      <div class="ticker-info">
+        <span class="ticker-name">Atlassian</span>
+        <span class="ticker-sub">Product in Practice</span>
+      </div>
+    </div>
+
+    <!-- Set D -->
+    <div class="ticker-card">
+      <div class="ticker-avatar">A</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Aakash Gupta</span>
+        <span class="ticker-sub">Product Growth</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar">R</div>
+      <div class="ticker-info">
+        <span class="ticker-name">Raj Shamani</span>
+        <span class="ticker-sub">Figuring Out</span>
+      </div>
+    </div>
+    <div class="ticker-card">
+      <div class="ticker-avatar" style="background:#0052CC;">
+        <img src="https://logo.clearbit.com/atlassian.com" alt="Atlassian logo">
+      </div>
+      <div class="ticker-info">
+        <span class="ticker-name">Atlassian</span>
+        <span class="ticker-sub">Product in Practice</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
