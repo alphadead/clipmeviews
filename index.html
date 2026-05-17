@@ -405,7 +405,17 @@
       text-align: center;
       padding: 130px 32px 90px;
       position: relative;
+      overflow: hidden;
     }
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #hero > * { position: relative; z-index: 1; }
 
     .hero-eyebrow {
       font-size: 12.5px;
@@ -1152,7 +1162,7 @@
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <!-- EDIT: Replace # with Calendly URL -->
-    <a class="btn btn-dark" href="#" target="_blank" rel="noopener">BOOK A CALL</a>
+    <a class="btn btn-dark" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener">BOOK A CALL</a>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
       <span></span><span></span><span></span>
     </button>
@@ -1168,7 +1178,7 @@
   </ul>
   <div class="drawer-cta">
     <!-- EDIT: Replace # with Calendly URL -->
-    <a class="btn btn-dark btn-dark-lg" href="#" target="_blank" rel="noopener" style="width:100%;border-radius:14px;">BOOK A CALL</a>
+    <a class="btn btn-dark btn-dark-lg" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener" style="width:100%;border-radius:14px;">BOOK A CALL</a>
   </div>
 </div>
 
@@ -1177,6 +1187,7 @@
      HERO — EDIT: eyebrow, headline, subline, CTA href
 ============================================================ -->
 <section id="hero" aria-label="Hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
   <!-- EDIT: top label -->
   <p class="hero-eyebrow">Content distribution at scale</p>
 
@@ -1192,7 +1203,7 @@
 
   <div class="hero-actions">
     <!-- EDIT: Replace # with Calendly URL -->
-    <a class="btn btn-dark btn-dark-lg" href="#" target="_blank" rel="noopener">
+    <a class="btn btn-dark btn-dark-lg" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener">
       Book A Call &nbsp;✦
     </a>
     <a class="btn btn-outline" href="#case-studies">See Results</a>
@@ -1307,7 +1318,7 @@
           and <strong>guarantee the reach.</strong>
         </p>
         <!-- EDIT: Replace # with Calendly URL -->
-        <a class="btn btn-outline" href="#" target="_blank" rel="noopener">Book a call →</a>
+        <a class="btn btn-outline" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener">Book a call →</a>
       </div>
 
       <!-- EDIT: Replace src with your video file path or URL (mp4 recommended) -->
@@ -1561,7 +1572,7 @@
     </p>
     <div class="reveal d3">
       <!-- EDIT: Replace # with Calendly URL -->
-      <a class="btn btn-dark btn-dark-lg" href="#" target="_blank" rel="noopener">
+      <a class="btn btn-dark btn-dark-lg" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener">
         Book A Call &nbsp;✦
       </a>
     </div>
@@ -1666,8 +1677,116 @@
   document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
   /* ============================================================
-     ORBIT NODES
+     HERO CANVAS — floating dots + rising view counts
   ============================================================ */
+  (function initHeroCanvas() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+
+    // Respect reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = canvas.getContext('2d');
+    const NAVY   = '27, 43, 107';
+    const MUTED  = '168, 162, 154';
+    const labels = ['1K views','10K views','100K views','1M views','5M views','10M views','✦','✦','✦'];
+
+    let W, H, particles = [];
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = rect.width;
+      H = canvas.height = rect.height;
+    }
+
+    function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+    function spawnParticle() {
+      const isLabel = Math.random() < 0.18;
+      return {
+        x:      randomBetween(0.05, 0.95) * W,
+        y:      H + 20,
+        vy:     randomBetween(0.35, 1.1),
+        alpha:  0,
+        maxA:   randomBetween(0.12, 0.38),
+        size:   isLabel ? 0 : randomBetween(1.5, 4),
+        label:  isLabel ? labels[Math.floor(Math.random() * labels.length)] : null,
+        fontSize: randomBetween(9, 13),
+        color:  Math.random() < 0.3 ? NAVY : MUTED,
+        phase:  'in',   // in → hold → out
+        holdFor: randomBetween(60, 200),
+        held:   0,
+      };
+    }
+
+    function init() {
+      particles = [];
+      // Pre-populate at random heights so the canvas isn't empty on load
+      for (let i = 0; i < 38; i++) {
+        const p = spawnParticle();
+        p.y    = randomBetween(0, H);
+        p.alpha = randomBetween(0, p.maxA);
+        p.phase = 'hold';
+        particles.push(p);
+      }
+    }
+
+    let frame = 0;
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Spawn new particles gradually
+      if (frame % 18 === 0 && particles.length < 55) {
+        particles.push(spawnParticle());
+      }
+
+      particles.forEach((p, i) => {
+        // Move up
+        p.y -= p.vy;
+
+        // Fade logic
+        if (p.phase === 'in') {
+          p.alpha += 0.012;
+          if (p.alpha >= p.maxA) { p.alpha = p.maxA; p.phase = 'hold'; }
+        } else if (p.phase === 'hold') {
+          p.held++;
+          if (p.held > p.holdFor) p.phase = 'out';
+        } else {
+          p.alpha -= 0.008;
+        }
+
+        // Remove when invisible or off-screen
+        if (p.alpha <= 0 || p.y < -30) {
+          particles[i] = spawnParticle();
+          return;
+        }
+
+        ctx.globalAlpha = p.alpha;
+
+        if (p.label) {
+          ctx.font = `${p.fontSize}px 'DM Sans', sans-serif`;
+          ctx.fillStyle = `rgba(${p.color},1)`;
+          ctx.letterSpacing = '1px';
+          ctx.fillText(p.label, p.x, p.y);
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.color},1)`;
+          ctx.fill();
+        }
+      });
+
+      ctx.globalAlpha = 1;
+      frame++;
+      requestAnimationFrame(tick);
+    }
+
+    resize();
+    init();
+    tick();
+    window.addEventListener('resize', () => { resize(); init(); }, { passive: true });
+  })();
+
   /* ============================================================
      NETWORK VIDEO — autoplay when scrolled into view, pause when out
   ============================================================ */
