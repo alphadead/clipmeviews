@@ -508,30 +508,29 @@
     .ticker-card {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--pill);
-      padding: 10px 22px 10px 10px;
+      padding: 12px 30px 12px 12px;
       white-space: nowrap;
       flex-shrink: 0;
       user-select: none;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .ticker-card:hover {
+      border-color: var(--text-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
     .ticker-avatar {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
       background: var(--surface-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--navy);
+      border: 1px solid var(--border);
     }
     .ticker-avatar img {
       width: 100%;
@@ -542,21 +541,28 @@
     .ticker-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
     .ticker-name {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 19px;
       color: var(--navy);
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.3px;
     }
     .ticker-sub {
-      font-size: 11.5px;
+      font-size: 12.5px;
       color: var(--text-muted);
       font-weight: 400;
       line-height: 1.2;
+    }
+    @media (max-width: 560px) {
+      .ticker-card { padding: 10px 22px 10px 10px; gap: 12px; }
+      .ticker-avatar { width: 44px; height: 44px; }
+      .ticker-name { font-size: 16px; }
+      .ticker-sub  { font-size: 11px; }
     }
 
     /* ============================================================
@@ -1241,18 +1247,10 @@
   <p class="logos-label">Brands we've worked with</p>
   <div class="logos-row">
 
-    <!-- EDIT: replace ticker-avatar content with <img src="headshot.jpg" alt="Aakash Gupta"> -->
     <div class="ticker-card">
-      <div class="ticker-avatar">A</div>
-      <div class="ticker-info">
-        <span class="ticker-name">Aakash Gupta</span>
-        <span class="ticker-sub">Product Growth</span>
+      <div class="ticker-avatar">
+        <img src="assets/raj-shamani.jpg" alt="Raj Shamani" loading="lazy" width="52" height="52">
       </div>
-    </div>
-
-    <!-- EDIT: replace ticker-avatar content with <img src="headshot.jpg" alt="Raj Shamani"> -->
-    <div class="ticker-card">
-      <div class="ticker-avatar">R</div>
       <div class="ticker-info">
         <span class="ticker-name">Raj Shamani</span>
         <span class="ticker-sub">Figuring Out</span>
@@ -1260,8 +1258,18 @@
     </div>
 
     <div class="ticker-card">
-      <div class="ticker-avatar" style="background:#0052CC;">
-        <img src="https://logo.clearbit.com/atlassian.com" alt="Atlassian logo">
+      <div class="ticker-avatar">
+        <img src="assets/gtmnow.jpg" alt="GTMnow" loading="lazy" width="52" height="52">
+      </div>
+      <div class="ticker-info">
+        <span class="ticker-name">GTMnow</span>
+        <span class="ticker-sub">The GTMnow Podcast</span>
+      </div>
+    </div>
+
+    <div class="ticker-card">
+      <div class="ticker-avatar">
+        <img src="assets/atlassian.jpg" alt="Atlassian" loading="lazy" width="52" height="52">
       </div>
       <div class="ticker-info">
         <span class="ticker-name">Atlassian</span>
