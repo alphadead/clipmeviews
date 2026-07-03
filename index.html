@@ -130,10 +130,10 @@
        DESIGN TOKENS
     ============================================================ */
     :root {
-      --bg:           #EDEBE6;
-      --surface:      #E4E0D9;
-      --surface-2:    #D8D3CA;
-      --border:       #D4CFC7;
+      --bg:           #FFFFFF;
+      --surface:      #F5F4F1;
+      --surface-2:    #EBE9E4;
+      --border:       #E3E1DC;
       --text:         #1A1A1A;
       --text-muted:   #6B6560;
       --text-dim:     #A8A29A;
@@ -272,14 +272,14 @@
       top: 0; left: 0; right: 0;
       z-index: 9999;
       padding: 18px 0;
-      background: rgba(237,235,230,0.88);
+      background: rgba(255,255,255,0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       transition: background 0.3s, box-shadow 0.3s;
     }
     #nav.scrolled {
-      background: rgba(237,235,230,0.97);
+      background: rgba(255,255,255,0.97);
       box-shadow: 0 2px 20px rgba(0,0,0,0.06);
     }
     .nav-inner {
@@ -346,7 +346,7 @@
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(237,235,230,0.98);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 9998;
@@ -771,6 +771,96 @@
     }
 
     /* ============================================================
+       CLIPS SHOWCASE — three vertical looping videos
+    ============================================================ */
+    #clips {
+      padding: var(--gap) 0;
+      border-top: 1px solid var(--border);
+    }
+    .clips-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .clips-header h2 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(28px, 3.4vw, 44px);
+      letter-spacing: -0.8px;
+      line-height: 1.12;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .clips-header p {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .clips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .clip-card {
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .clip-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .clip-card .video-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 40%, var(--surface) 60%, var(--surface-2) 100%);
+      background-size: 300% 300%;
+      animation: videoShimmer 4s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .clip-card .video-placeholder .play-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+    .clip-card .video-placeholder .play-icon svg {
+      width: 16px; height: 16px;
+      color: #fff;
+      margin-left: 2px;
+    }
+    .clip-card .video-placeholder .placeholder-label {
+      font-size: 9px;
+      letter-spacing: 1.8px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .clip-card.has-video .video-placeholder { display: none; }
+    @media (max-width: 680px) {
+      .clips-grid {
+        grid-template-columns: 1fr;
+        max-width: 260px;
+      }
+    }
+
+    /* ============================================================
        MARQUEE BANNER
     ============================================================ */
     .marquee-banner {
@@ -906,7 +996,7 @@
     .cs-pdf-badge {
       position: absolute;
       top: 10px; right: 10px;
-      background: rgba(237,235,230,0.9);
+      background: rgba(255,255,255,0.9);
       backdrop-filter: blur(6px);
       border-radius: 5px;
       padding: 3px 8px;
@@ -1303,26 +1393,75 @@
       <div class="how-step reveal d1">
         <span class="how-step-num">01</span>
         <h3>You send. We sort.</h3>
-        <p>Drop your long-form content into our pipeline. Podcasts, interviews, talks, livestreams: anything you've already made. No extra filming, no extra prep. You keep creating exactly how you do now.</p>
+        <p>Drop in your podcasts, interviews, or livestreams. No extra filming, no extra prep.</p>
       </div>
       <div class="how-step reveal d2">
         <span class="how-step-num">02</span>
         <h3>We find the moments worth multiplying.</h3>
-        <p>Our team watches every second and pulls the clips that actually deserve to travel. Not "fine" content. Stop-the-scroll content. The lines someone would quote to a friend. If a moment won't earn a share, it doesn't make the cut.</p>
+        <p>We pull only the stop-the-scroll moments. If a clip won't earn a share, it doesn't make the cut.</p>
       </div>
       <div class="how-step reveal d3">
         <span class="how-step-num">03</span>
         <h3>One clip becomes ten.</h3>
-        <p>Each moment gets recut, recaptioned, and rebuilt for the platform it's going to. What works on Reels dies on X. What lands on TikTok flops on Shorts. We make native versions for each feed, not lazy reposts with the wrong aspect ratio.</p>
+        <p>Every clip is recut and recaptioned natively for each platform. No lazy reposts.</p>
       </div>
       <div class="how-step reveal d4">
         <span class="how-step-num">04</span>
         <h3>Then we post. A thousand times.</h3>
-        <p>Your clips drop across our network of fan and topic accounts on every major platform. Same content, different angles, parallel reach. Your audience stops finding you and starts seeing you everywhere they scroll.</p>
+        <p>Your clips drop across our entire network. Your audience sees you everywhere they scroll.</p>
       </div>
     </div>
 
     <p class="how-footer reveal d2">The whole system runs in the background. You film once. We make it impossible to miss.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CLIPS SHOWCASE — EDIT: replace each video src with a clip file
+     (vertical 9:16 mp4 recommended). Placeholder hides automatically
+     once the card has class "has-video".
+============================================================ -->
+<section id="clips" aria-labelledby="clips-heading">
+  <div class="container">
+    <div class="clips-header reveal">
+      <span class="eyebrow eyebrow-center">Our work</span>
+      <h2 id="clips-heading">Clips that stop the scroll.</h2>
+      <p>Straight from our network. Autoplaying, looping, and pulling views right now.</p>
+    </div>
+
+    <div class="clips-grid">
+      <!-- EDIT: add src="clips/clip1.mp4" and class "has-video" on the card -->
+      <div class="clip-card reveal d1">
+        <video class="clip-video" src="" muted playsinline loop preload="none" aria-label="Sample clip 1"></video>
+        <div class="video-placeholder" aria-hidden="true">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="placeholder-label">Clip 01</span>
+        </div>
+      </div>
+      <!-- EDIT: add src="clips/clip2.mp4" and class "has-video" on the card -->
+      <div class="clip-card reveal d2">
+        <video class="clip-video" src="" muted playsinline loop preload="none" aria-label="Sample clip 2"></video>
+        <div class="video-placeholder" aria-hidden="true">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="placeholder-label">Clip 02</span>
+        </div>
+      </div>
+      <!-- EDIT: add src="clips/clip3.mp4" and class "has-video" on the card -->
+      <div class="clip-card reveal d3">
+        <video class="clip-video" src="" muted playsinline loop preload="none" aria-label="Sample clip 3"></video>
+        <div class="video-placeholder" aria-hidden="true">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="placeholder-label">Clip 03</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1815,11 +1954,13 @@
   /* ============================================================
      NETWORK VIDEO — autoplay when scrolled into view, pause when out
   ============================================================ */
-  (function initNetworkVideo() {
-    const video = document.getElementById('networkVideo');
-    if (!video) return;
+  (function initAutoplayVideos() {
+    const videos = document.querySelectorAll('#networkVideo, .clip-video');
+    if (!videos.length) return;
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
+        const video = entry.target;
+        if (!video.getAttribute('src')) return; // skip empty placeholders
         if (entry.isIntersecting) {
           video.play().catch(() => {});
         } else {
@@ -1827,7 +1968,7 @@
         }
       });
     }, { threshold: 0.3 });
-    observer.observe(video);
+    videos.forEach(v => observer.observe(v));
   })();
 
   /* ============================================================
