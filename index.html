@@ -764,52 +764,6 @@
     }
 
     /* ============================================================
-       MARQUEE BANNER
-    ============================================================ */
-    .marquee-banner {
-      padding: 44px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      overflow: hidden;
-      position: relative;
-    }
-    .marquee-banner::before, .marquee-banner::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 120px; z-index: 2; pointer-events: none;
-    }
-    .marquee-banner::before { left:0;  background: linear-gradient(to right, var(--surface), transparent); }
-    .marquee-banner::after  { right:0; background: linear-gradient(to left,  var(--surface), transparent); }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: ticker 36s linear infinite;
-    }
-    .marquee-item {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding-right: 18px;
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(18px, 2.4vw, 26px);
-      letter-spacing: -0.3px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      user-select: none;
-    }
-    .marquee-item strong { color: var(--navy); }
-    .marquee-sep {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--text-dim);
-      flex-shrink: 0;
-    }
-
-    /* ============================================================
        CASE STUDIES
     ============================================================ */
     #case-studies {
@@ -1379,23 +1333,6 @@
     <p class="how-footer reveal d2">The whole system runs in the background. You film once. We make it impossible to miss.</p>
   </div>
 </section>
-
-
-<!-- ============================================================
-     MARQUEE — EDIT: text (keep duplicate for seamless loop)
-============================================================ -->
-<div class="marquee-banner" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;We post your content&nbsp;<strong>1,000+ times</strong>&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Reach stops being a gamble&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Fan pages that pull millions of views&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Organic views at scale&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;We post your content&nbsp;<strong>1,000+ times</strong>&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Reach stops being a gamble&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Fan pages that pull millions of views&nbsp;</span>
-    <span class="marquee-item"><span class="marquee-sep"></span>&nbsp;Organic views at scale&nbsp;</span>
-  </div>
-</div>
 
 
 <!-- ============================================================
