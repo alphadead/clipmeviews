@@ -138,7 +138,7 @@
       --border:       #242428;
       --text:         #F2F1ED;
       --text-muted:   #A5A29B;
-      --text-dim:     #5F5D58;
+      --text-dim:     #706D67;
       --navy:         #F5F3EC;   /* heading + accent (warm white on dark) */
       --ink:          #F5F3EC;   /* primary button bg (inverted) */
       --serif:        'Libre Baskerville', Georgia, serif;
@@ -165,6 +165,8 @@
     a  { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
     button { font-family: var(--sans); }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
 
     /* Accessibility: skip link */
     .skip-link {
@@ -195,6 +197,7 @@
     ============================================================ */
     .container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
 
+    /* (kept for future section labels) */
     .eyebrow {
       display: block;
       font-size: 11px;
@@ -227,7 +230,7 @@
         transition-duration: 0.01ms !important;
       }
       .reveal { opacity: 1; transform: none; }
-      #cursor-dot, #cursor-glow { display: none; }
+      #heroCanvas { display: none; }
     }
 
     /* ============================================================
@@ -466,13 +469,6 @@
       flex-wrap: wrap;
       animation: fadeUp 0.6s 0.24s ease both;
     }
-    .hero-trust {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 16px;
-      animation: fadeUp 0.6s 0.30s ease both;
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -709,7 +705,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: none;
+      cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
     .clip-sound:hover { background: rgba(26,26,26,0.95); transform: scale(1.08); }
@@ -968,8 +964,8 @@
       font-size: 14.5px;
       font-weight: 600;
       color: var(--text);
-      cursor: none;
-      transition: background 0.2s;
+      cursor: pointer;
+      transition: background 0.2s, transform 160ms ease-out;
       letter-spacing: -0.2px;
       text-align: left;
     }
@@ -1074,42 +1070,20 @@
     @media (max-width: 560px) { .footer-nav { display: none; } }
 
     /* ============================================================
-       CURSOR — only on pointer devices, not touch
+       HOVER GATING — lift/hover effects only on real pointers
     ============================================================ */
-    @media (pointer: fine) {
-      body, a, button, [role="button"], .faq-q { cursor: none; }
-
-      #cursor-dot {
-        position: fixed;
-        top: 0; left: 0;
-        width: 7px; height: 7px;
-        background: var(--navy);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 99999;
-        transform: translate(-50%, -50%);
-        transition: transform 0.15s ease, opacity 0.25s;
-        will-change: left, top;
-        opacity: 0;
-      }
-      #cursor-dot.active  { opacity: 1; }
-      #cursor-dot.hovering { transform: translate(-50%, -50%) scale(3.2); opacity: 0.35; }
-
-      #cursor-glow {
-        position: fixed;
-        top: 0; left: 0;
-        width: 460px; height: 460px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(245,243,236,0.05) 0%, transparent 68%);
-        pointer-events: none;
-        z-index: 0;
-        transform: translate(-50%, -50%);
-        will-change: left, top;
-      }
+    @media (hover: none) {
+      .btn-dark:hover    { background: var(--ink); transform: none; }
+      .btn-outline:hover { border-color: var(--border); background: transparent; }
+      .ticker-card:hover { border-color: var(--border); transform: none; box-shadow: none; }
+      .cs-card:hover     { transform: none; box-shadow: none; }
+      .how-step:hover    { background: var(--surface); }
+      .faq-q:hover       { background: var(--surface); }
     }
-    /* On touch devices — hide cursor elements entirely */
-    @media (pointer: coarse) {
-      #cursor-dot, #cursor-glow { display: none; }
+
+    /* Press feedback on all interactive pills */
+    .btn:active, .faq-q:active, .clip-sound:active {
+      transform: scale(0.97);
     }
 
   </style>
@@ -1117,8 +1091,6 @@
 <body>
 
 <a class="skip-link" href="#hero">Skip to main content</a>
-<div id="cursor-glow" aria-hidden="true"></div>
-<div id="cursor-dot"  aria-hidden="true"></div>
 
 <!-- ============================================================
      NAV — EDIT: Calendly href on all CTA buttons
@@ -1177,8 +1149,8 @@
   <!-- EDIT: key subline -->
   <p class="hero-sub">
     <em>(eye)BALLS</em> is what we can get you.<br>
-    We build and run fan pages around you, posting your best moments
-    until they pull millions of views. <strong>Reach stops being a gamble.</strong>
+    We run fan pages that post your clips until they pull
+    <strong>millions of views.</strong>
   </p>
 
   <div class="hero-actions">
@@ -1188,9 +1160,6 @@
     </a>
     <a class="btn btn-outline" href="#case-studies">See Results</a>
   </div>
-
-  <!-- EDIT: trust note -->
-  <p class="hero-trust">Trusted by founders, creators &amp; brands serious about reach.</p>
 </section>
 
 
@@ -1243,7 +1212,6 @@
 <section id="clips" aria-labelledby="clips-heading">
   <div class="container">
     <div class="clips-header reveal">
-      <span class="eyebrow eyebrow-center">Our work</span>
       <h2 id="clips-heading">Clips that stop the scroll.</h2>
       <p>Straight from fan pages we run. Autoplaying, looping, and pulling views right now.</p>
     </div>
@@ -1302,7 +1270,6 @@
 <section id="how" aria-labelledby="how-heading">
   <div class="container">
     <div class="how-header reveal">
-      <span class="eyebrow">Process</span>
       <h2 id="how-heading">How One Video Becomes a Thousand Posts</h2>
       <p>No magic. Just a system that compounds while you sleep.</p>
     </div>
@@ -1345,7 +1312,6 @@
   <div class="container">
     <div class="cs-header reveal">
       <div>
-        <span class="eyebrow">Results</span>
         <h2 id="cs-heading">Proof,<br>not promises.</h2>
       </div>
       <p>Every campaign is tracked. Download the full PDFs to see the real numbers.</p>
@@ -1413,9 +1379,8 @@
 <section id="faq" aria-labelledby="faq-heading">
   <div class="container">
     <div class="reveal">
-      <span class="eyebrow eyebrow-center">FAQ</span>
       <h2 class="faq-heading" id="faq-heading">FAQs</h2>
-      <p class="faq-sub">Got questions? I've got answers.</p>
+      <p class="faq-sub">Got questions? We've got answers.</p>
     </div>
 
     <ul class="faq-list reveal d1" role="list">
@@ -1514,7 +1479,6 @@
 ============================================================ -->
 <section id="cta" aria-labelledby="cta-heading">
   <div class="container">
-    <span class="eyebrow eyebrow-center reveal">Ready to scale?</span>
     <h2 class="cta-h reveal d1" id="cta-heading">Stop gambling<br>on reach.</h2>
     <p class="cta-sub reveal d2">
       We build fan pages around you and post your content until it pulls
@@ -1781,44 +1745,6 @@
       });
     });
   })();
-
-  /* ============================================================
-     CURSOR — pointer devices only
-  ============================================================ */
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const dot  = document.getElementById('cursor-dot');
-    const glow = document.getElementById('cursor-glow');
-    let mx = -600, my = -600, gx = -600, gy = -600;
-    let hasMoved = false, rafId = null;
-
-    function animCursor() {
-      dot.style.left  = mx + 'px';
-      dot.style.top   = my + 'px';
-      gx += (mx - gx) * 0.072;
-      gy += (my - gy) * 0.072;
-      glow.style.left = gx + 'px';
-      glow.style.top  = gy + 'px';
-      rafId = requestAnimationFrame(animCursor);
-    }
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-      if (!hasMoved) {
-        hasMoved = true;
-        dot.classList.add('active');
-        animCursor();
-      }
-    }, { passive: true });
-
-    document.addEventListener('mouseleave', () => dot.classList.remove('active'));
-    document.addEventListener('mouseenter', () => { if (hasMoved) dot.classList.add('active'); });
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
-    });
-  }
 
   /* ============================================================
      FAQ ACCORDION — with aria-expanded
