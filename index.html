@@ -339,15 +339,16 @@
     .nav-hamburger span {
       display: block;
       height: 1.5px;
+      width: 100%;
       background: var(--text);
       border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s, width 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
       transform-origin: center;
     }
-    .nav-hamburger span:nth-child(2) { width: 70%; }
+    .nav-hamburger span:nth-child(2) { transform: scaleX(0.7); }
     /* Open state */
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     /* Mobile drawer */
@@ -1106,7 +1107,8 @@
     </a>
     <ul class="nav-links" role="list">
       <li><a href="#how">How it works</a></li>
-      <li><a href="#case-studies">Case Studies</a></li>
+      <!-- Case studies hidden for now — re-enable when PDFs are ready -->
+      <!-- <li><a href="#case-studies">Case Studies</a></li> -->
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <!-- EDIT: Replace # with Calendly URL -->
@@ -1121,7 +1123,8 @@
 <div class="nav-drawer" id="navDrawer" aria-hidden="true">
   <ul>
     <li><a href="#how">How it works</a></li>
-    <li><a href="#case-studies">Case Studies</a></li>
+    <!-- Case studies hidden for now -->
+    <!-- <li><a href="#case-studies">Case Studies</a></li> -->
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="drawer-cta">
@@ -1158,7 +1161,7 @@
     <a class="btn btn-dark btn-dark-lg" href="https://calendly.com/gupdav/improve-your-social-presence" target="_blank" rel="noopener">
       Book A Call &nbsp;✦
     </a>
-    <a class="btn btn-outline" href="#case-studies">See Results</a>
+    <a class="btn btn-outline" href="#clips">See Our Work</a>
   </div>
 </section>
 
@@ -1271,14 +1274,14 @@
   <div class="container">
     <div class="how-header reveal">
       <h2 id="how-heading">How One Video Becomes a Thousand Posts</h2>
-      <p>No magic. Just a system that compounds while you sleep.</p>
+      <p>A system that quietly compounds your reach while you sleep.</p>
     </div>
 
     <div class="how-grid">
       <div class="how-step reveal d1">
         <span class="how-step-num">01</span>
         <h3>You send. We sort.</h3>
-        <p>Drop in your podcasts, interviews, or livestreams. No extra filming, no extra prep.</p>
+        <p>Drop in your podcasts, interviews, or livestreams. You keep creating exactly as you do now.</p>
       </div>
       <div class="how-step reveal d2">
         <span class="how-step-num">02</span>
@@ -1303,11 +1306,11 @@
 
 
 <!-- ============================================================
-     CASE STUDIES — EDIT each .cs-card:
-     • href → PDF path
-     • cs-brand, cs-title, cs-metric, cs-metric-sub
-     • replace .cs-thumb-num with <img src="..." alt="Campaign thumbnail">
+     CASE STUDIES — hidden for now. Re-enable when real PDFs +
+     thumbnails + metrics are ready. Also uncomment the nav links
+     (search "Case studies hidden") and repoint the hero button.
 ============================================================ -->
+<!--
 <section id="case-studies" aria-labelledby="cs-heading">
   <div class="container">
     <div class="cs-header reveal">
@@ -1319,8 +1322,6 @@
 
     <div class="cs-grid">
 
-      <!-- CASE STUDY 1 — EDIT href, brand, title, metric -->
-      <!-- EDIT: href → PDF path, cs-brand, cs-title, cs-metric, cs-metric-sub, replace cs-thumb-placeholder with <img> -->
       <a class="cs-card reveal d1" href="#" target="_blank" rel="noopener" aria-label="Case study: Brand Name">
         <div class="cs-thumb">
           <div class="cs-thumb-placeholder" aria-hidden="true">
@@ -1344,7 +1345,6 @@
         </div>
       </a>
 
-      <!-- EDIT: href → PDF path, cs-brand, cs-title, cs-metric, cs-metric-sub, replace cs-thumb-placeholder with <img> -->
       <a class="cs-card reveal d2" href="#" target="_blank" rel="noopener" aria-label="Case study: Brand Name">
         <div class="cs-thumb">
           <div class="cs-thumb-placeholder" aria-hidden="true">
@@ -1371,6 +1371,7 @@
     </div>
   </div>
 </section>
+-->
 
 
 <!-- ============================================================
@@ -1509,7 +1510,7 @@
       </a>
       <ul class="footer-nav" role="list">
         <li><a href="#how">How it works</a></li>
-        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#clips">Our work</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="https://gupdav.com" target="_blank" rel="noopener">Our Agency ↗</a></li>
       </ul>
