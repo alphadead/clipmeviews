@@ -240,9 +240,9 @@
     .hero-note { margin-top: 22px; font-size: 13px; color: var(--dim); }
 
     /* Device / video frame */
-    .hero-visual { position: relative; justify-self: center; width: 100%; max-width: 330px; }
+    .hero-visual { position: relative; justify-self: center; width: 100%; max-width: 540px; }
     .device {
-      position: relative; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden;
+      position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden;
       background: var(--surface); border: 1px solid var(--border);
       box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02) inset;
     }
@@ -318,19 +318,19 @@
     .proc-body p { color: var(--muted); font-size: 15.5px; line-height: 1.7; }
 
     /* ============================================================
-       GUARANTEE — view tiers (the offer)
+       WORK — real launch videos we shipped
     ============================================================ */
-    .guar-head { text-align: center; max-width: 24ch; margin: 0 auto clamp(40px, 6vw, 60px); }
-    .guar-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.03; letter-spacing: -0.03em; }
-    .guar-head p { color: var(--muted); font-size: 15.5px; margin-top: 14px; }
-    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .tier { border: 1px solid var(--border); border-radius: 18px; padding: clamp(28px, 3.4vw, 40px) 28px; background: var(--surface); position: relative; overflow: hidden; }
-    .tier.featured { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
-    .tier-badge { position: absolute; top: 16px; right: 16px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 4px 10px; }
-    .tier-num { font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 0.95; letter-spacing: -0.03em; }
-    .tier.featured .tier-num { color: var(--accent); }
-    .tier-label { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 8px; }
-    .tier-desc { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border-soft); }
+    .work-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vw, 56px); }
+    .work-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.03; letter-spacing: -0.03em; max-width: 16ch; }
+    .work-head p { color: var(--muted); font-size: 15px; max-width: 32ch; }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2.4vw, 28px); }
+    .work-card { display: flex; flex-direction: column; gap: 16px; }
+    .work-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+    .work-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .work-meta { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .work-meta h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; }
+    .work-badge { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 999px; padding: 4px 11px; }
+    @media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
        FAQ
@@ -395,7 +395,7 @@
     ============================================================ */
     @media (max-width: 920px) {
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { max-width: 290px; order: 2; }
+      .hero-visual { max-width: 560px; order: 2; }
       .hero-sub { max-width: 42ch; }
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -403,7 +403,6 @@
       .nav-links, .nav-right .btn { display: none; }
       .hamburger { display: flex; }
       .pillars { grid-template-columns: 1fr; gap: 36px; }
-      .tiers { grid-template-columns: 1fr; }
       .proc-row { grid-template-columns: 56px 1fr; gap: 18px; }
       .footer-nav { display: none; }
     }
@@ -439,7 +438,7 @@
     <ul class="nav-links" role="list">
       <li><a href="#promise">What we do</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#guarantee">Guarantee</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-right">
@@ -456,7 +455,7 @@
 <div class="drawer" id="drawer" aria-hidden="true">
   <a class="d-link" href="#promise">What we do</a>
   <a class="d-link" href="#process">Process</a>
-  <a class="d-link" href="#guarantee">Guarantee</a>
+  <a class="d-link" href="#work">Work</a>
   <a class="d-link" href="#faq">FAQ</a>
   <a class="btn btn-accent" href="https://calendly.com/clipmeviews/30min" target="_blank" rel="noopener">Book a call</a>
 </div>
@@ -481,12 +480,12 @@
       </div>
 
       <div class="hero-visual">
-        <!-- EDIT: swap the embed ID for a real launch video (portrait 9:16) -->
+        <!-- Hero sizzle: real launch video, muted ambient loop. Full version is in the Work section. -->
         <div class="device">
           <span class="device-chip"><span class="dot"></span>LIVE</span>
           <iframe
             id="heroVideo"
-            src="https://www.youtube.com/embed/Bnt2WTYq_KM?autoplay=1&mute=1&loop=1&playlist=Bnt2WTYq_KM&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1&fs=0"
+            src="https://www.youtube.com/embed/KjP4hD028m8?autoplay=1&mute=1&loop=1&playlist=KjP4hD028m8&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1&fs=0"
             title="Launch video example"
             allow="autoplay; encrypted-media"
             loading="lazy"></iframe>
@@ -599,29 +598,26 @@
   </div>
 </section>
 
-<!-- ============================================================ GUARANTEE ============================================================ -->
-<section id="guarantee" class="section" aria-labelledby="guar-h">
+<!-- ============================================================ WORK ============================================================ -->
+<section id="work" class="section" aria-labelledby="work-h">
   <div class="wrap">
-    <div class="guar-head reveal">
-      <h2 id="guar-h">Pick your number. We guarantee the views.</h2>
-      <p>Not impressions, not estimates. Guaranteed organic views on your launch.</p>
+    <div class="work-head">
+      <h2 id="work-h" class="reveal">Launches we've shipped</h2>
+      <p class="reveal d1">Real launch videos, made and distributed by us. Hit play.</p>
     </div>
-    <div class="tiers">
-      <div class="tier reveal d1">
-        <div class="tier-num">1M</div>
-        <div class="tier-label">guaranteed views</div>
-        <p class="tier-desc">For a sharp, focused launch. One hero video, distributed until it clears a million.</p>
+    <div class="work-grid">
+      <!-- EDIT: add more launch videos by copying a .work-card and swapping the embed ID -->
+      <div class="work-card reveal d1">
+        <div class="work-frame">
+          <iframe src="https://www.youtube.com/embed/KjP4hD028m8?rel=0&modestbranding=1&playsinline=1" title="Launch video" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="work-meta"><h3>Launch Video</h3><span class="work-badge">Launch</span></div>
       </div>
-      <div class="tier featured reveal d2">
-        <span class="tier-badge">Most picked</span>
-        <div class="tier-num">3M</div>
-        <div class="tier-label">guaranteed views</div>
-        <p class="tier-desc">The full launch. Hero video, platform cuts, and amplification tuned to hit three million.</p>
-      </div>
-      <div class="tier reveal d3">
-        <div class="tier-num">5M</div>
-        <div class="tier-label">guaranteed views</div>
-        <p class="tier-desc">Maximum reach. A campaign built to make your launch impossible to miss anywhere.</p>
+      <div class="work-card reveal d2">
+        <div class="work-frame">
+          <iframe src="https://www.youtube.com/embed/_GMoBEXOBnU?rel=0&modestbranding=1&playsinline=1" title="Launch ad" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="work-meta"><h3>Launch Ad</h3><span class="work-badge">Ad</span></div>
       </div>
     </div>
   </div>
